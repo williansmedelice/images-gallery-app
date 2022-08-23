@@ -27,8 +27,8 @@ export default function Detail() {
 
   useEffect(() => {
     const searchImages = () => {
-      const idImages = route.params.idImgage; 
-      dispatch(searchImg(idImages));
+      const idImg = route.params.idImg; 
+      dispatch(searchImg(idImg));
     };
     searchImages();
   }, [route.params]);

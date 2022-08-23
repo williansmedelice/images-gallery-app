@@ -8,13 +8,13 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
-const Article = ({ newStyle, index, image }) => {
+const Article = ({ newStyle, image }) => {
   // Hooks
   const navigation = useNavigation();
 
   return (
     <Pressable
-      onPress={() => navigation.navigate("Detail", { idImgage: index })}
+      onPress={() => navigation.navigate("Detail", { idImg: image.id })}
       style={newStyle}
     >
       <View style={newStyle}>

@@ -17,13 +17,10 @@ const imageSlice = createSlice({
       const foundImage = state.dataImages.find(
         (image) => image.id == action.payload
       );
-      console.log("Found Image: ", foundImage);
-      console.log("Data Images: ", state.dataImages);
-
-      // const newArray = state.dataImages.unshift(foundImage);
-      // console.log("NEW ARRAY", newArray);
-
-      // state.dataImages = state.dataImages.unshift(foundImage);
+      state.dataImages = state.dataImages.filter(
+        (image) => image.id !== action.payload
+      );
+      state.dataImages.unshift(foundImage);
     },
   },
 });

@@ -59,7 +59,6 @@ export default function Home() {
                     return (
                       <Article
                         key={i}
-                        index={i}
                         newStyle={newStyle}
                         image={image}
                       />
