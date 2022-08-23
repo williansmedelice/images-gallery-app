@@ -45,12 +45,6 @@ export default function Home() {
           </View>
           <ScrollView style={styles.scrollStyle}>
             <View style={styles.container}>
-              {/* <Text style={styles.fontTitle}>Home</Text>
-                  <Button title="Detail" onPress={() => navigation.navigate("Detail")} />
-                  <Button
-                    title="Profile"
-                    onPress={() => navigation.navigate("Profile")}
-                  /> */}
               <Animatable.View animation="fadeIn" duraton="500">
                 <View style={styles.list}>
                   {images.map((image, i) => {

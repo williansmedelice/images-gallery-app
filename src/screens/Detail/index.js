@@ -26,6 +26,12 @@ export default function Detail() {
   // State Redux
   const images = useSelector((state) => state.images.dataImages);
 
+  // State
+  const [transition, setTransition] = useState({
+    type: "fadeOutDownBig",
+    duration: "200",
+  });
+
   useEffect(() => {
     const searchImages = () => {
       const idImg = route.params.idImg;
@@ -34,15 +40,24 @@ export default function Detail() {
     searchImages();
   }, [route.params]);
 
+  //fadeOutDownBig
+  //fadeInUpBig
+
+  const showDetail = () => {
+    if (transition.type == "fadeOutDownBig") {
+      setTransition({ type: "fadeInUpBig", duration: "500" });
+    } else {
+      setTransition({ type: "fadeOutDownBig", duration: "200" });
+    }
+  };
+
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.fontTitle}>Detail</Text>
-      <Button title="Back" onPress={() => navigation.goBack()} /> */}
       <Animatable.View animation="fadeIn" duraton="500">
         <ScrollView horizontal pagingEnabled>
           {images.map((image, i) => {
             return (
-              <Pressable key={i} onPress={() => console.log("Press")}>
+              <Pressable key={i} onPress={() => showDetail()}>
                 <ImageBackground
                   style={[styles.contImage, styles.footer]}
                   source={{ uri: image.urls.regular }}
@@ -55,10 +70,15 @@ export default function Detail() {
                     <AntDesign name="closecircleo" size={40} color="white" />
                   </Pressable>
 
-                  <View style={styles.footerDescription}>
-                    <Text style={styles.fontTitle}>{image.user.name}</Text>
-                    <Text style={styles.fontLike}>{image.likes} Likes</Text>
-                  </View>
+                  <Animatable.View
+                    animation={transition.type}
+                    duraton={transition.duration}
+                  >
+                    <View style={styles.footerDescription}>
+                      <Text style={styles.fontTitle}>{image.user.name}</Text>
+                      <Text style={styles.fontLike}>{image.likes} Likes</Text>
+                    </View>
+                  </Animatable.View>
                 </ImageBackground>
               </Pressable>
             );
