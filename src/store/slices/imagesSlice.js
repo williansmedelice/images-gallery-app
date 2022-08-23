@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   dataImages: null,
-  searchImage: null,
 };
 
 const imageSlice = createSlice({
