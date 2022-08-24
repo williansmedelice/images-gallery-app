@@ -8,6 +8,8 @@ import {
   ScrollView,
   Pressable,
   Dimensions,
+  Image,
+  TouchableOpacity,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -67,7 +69,12 @@ export default function Detail() {
                     onPress={() => navigation.goBack()}
                     style={styles.headerCont}
                   >
-                    <AntDesign name="closecircleo" size={40} color="white" />
+                    <AntDesign
+                      style={styles.fontClose}
+                      name="closecircleo"
+                      size={40}
+                      color="white"
+                    />
                   </Pressable>
 
                   <Animatable.View
@@ -77,6 +84,28 @@ export default function Detail() {
                     <View style={styles.footerDescription}>
                       <Text style={styles.fontTitle}>{image.user.name}</Text>
                       <Text style={styles.fontLike}>{image.likes} Likes</Text>
+                      <View style={styles.contDescription}>
+                        <TouchableOpacity
+                          style={styles.contDescription}
+                          onPress={() => console.log("press")}
+                        >
+                          <View>
+                            <Image
+                              style={styles.avatarCont}
+                              source={{ uri: image.user.profile_image.medium }}
+                            />
+                          </View>
+                          <View>
+                            <Text style={styles.fontNameUser}>
+                              {image.user.name}
+                            </Text>
+
+                            <Text style={styles.fontViewProfile}>
+                              View Profile
+                            </Text>
+                          </View>
+                        </TouchableOpacity>
+                      </View>
                     </View>
                   </Animatable.View>
                 </ImageBackground>
@@ -133,6 +162,49 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginLeft: 10,
     color: "white",
+    textShadowColor:
+      Platform.OS === "android" ? "rgba(0, 0, 0, 0)" : "rgba(0, 0, 0, 1)",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 1,
+    fontFamily: "MuseoSans300",
+  },
+  avatarCont: {
+    marginLeft: 10,
+    marginTop: 15,
+    height: 50,
+    width: 50,
+    borderRadius: 50,
+  },
+  contDescription: {
+    flexDirection: "row",
+    alignItems: "center",
+    // backgroundColor: "yellow",
+  },
+  fontNameUser: {
+    fontSize: 15,
+    marginTop: 10,
+    marginLeft: 10,
+    fontWeight: "bold",
+    color: "white",
+    textShadowColor:
+      Platform.OS === "android" ? "rgba(0, 0, 0, 0)" : "rgba(0, 0, 0, 1)",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 1,
+    fontFamily: "MuseoSans700",
+  },
+  fontViewProfile: {
+    fontSize: 10,
+    marginLeft: 10,
+    marginTop: 5,
+    color: "white",
+    textShadowColor:
+      Platform.OS === "android" ? "rgba(0, 0, 0, 0)" : "rgba(0, 0, 0, 1)",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 1,
+    fontFamily: "MuseoSans300",
+  },
+  fontClose: {
+    padding: 5,
     textShadowColor:
       Platform.OS === "android" ? "rgba(0, 0, 0, 0)" : "rgba(0, 0, 0, 1)",
     textShadowOffset: { width: 1, height: 1 },
