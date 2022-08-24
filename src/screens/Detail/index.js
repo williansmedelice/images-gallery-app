@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   ImageBackground,
   ScrollView,
   Pressable,
@@ -64,7 +63,6 @@ export default function Detail() {
                   style={[styles.contImage, styles.footer]}
                   source={{ uri: image.urls.regular }}
                 >
-                  {/* <Text>{image.id}</Text> */}
                   <Pressable
                     onPress={() => navigation.goBack()}
                     style={styles.headerCont}
@@ -87,7 +85,11 @@ export default function Detail() {
                       <View style={styles.contDescription}>
                         <TouchableOpacity
                           style={styles.contDescription}
-                          onPress={() => console.log("press")}
+                          onPress={() =>
+                            navigation.navigate("Profile", {
+                              user: image.user.username,
+                            })
+                          }
                         >
                           <View>
                             <Image
@@ -178,7 +180,6 @@ const styles = StyleSheet.create({
   contDescription: {
     flexDirection: "row",
     alignItems: "center",
-    // backgroundColor: "yellow",
   },
   fontNameUser: {
     fontSize: 15,
