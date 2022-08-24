@@ -49,9 +49,6 @@ export default function Profile() {
         <Loader />
       ) : (
         <View style={styles.container}>
-          {/* <Text style={styles.fontTitle}>Profile</Text>
-          <Text>{route.params.user}</Text>
-          <Button title="Back" onPress={() => navigation.goBack()} /> */}
           <Pressable
             onPress={() => navigation.goBack()}
             style={styles.headerCont}

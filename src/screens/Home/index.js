@@ -1,7 +1,14 @@
 import { useEffect } from "react";
-import { StyleSheet, Text, View, Button, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
+import { Ionicons } from "@expo/vector-icons";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 // Actions
@@ -14,9 +21,9 @@ export default function Home() {
   // Hooks
   const navigation = useNavigation();
   const dispatch = useDispatch();
-  
+
   // State Redux
-  const images = useSelector((state) => state.images.dataImages)
+  const images = useSelector((state) => state.images.dataImages);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -38,10 +45,18 @@ export default function Home() {
         <Loader />
       ) : (
         <View style={styles.mainContainer}>
-          <View style={styles.headerTitle}>
-            <Animatable.View animation="bounceIn" duraton="500">
-              <Text style={styles.fontHeader}>Discover</Text>
-            </Animatable.View>
+          <View style={styles.contHeader}>
+            <TouchableOpacity
+              onPress={() => console.log("Press")}
+              style={styles.headerCont}
+            >
+              <Ionicons name="ios-menu" size={30} color="black" />
+            </TouchableOpacity>
+            <View style={styles.headerTitle}>
+              <Animatable.View animation="bounceIn" duraton="500">
+                <Text style={styles.fontHeader}>Discover</Text>
+              </Animatable.View>
+            </View>
           </View>
           <ScrollView style={styles.scrollStyle}>
             <View style={styles.container}>
@@ -51,11 +66,7 @@ export default function Home() {
                     let newStyle =
                       i % 2 === 0 ? styles.listItem : styles.listItemMarginTop;
                     return (
-                      <Article
-                        key={i}
-                        newStyle={newStyle}
-                        image={image}
-                      />
+                      <Article key={i} newStyle={newStyle} image={image} />
                     );
                   })}
                 </View>
@@ -77,10 +88,16 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: "white",
   },
+  contHeader:{
+    flexDirection: "row",
+    alignItems: "center",
+    // marginHorizontal: 5,
+  },
   scrollStyle: {
     // padding: 5,
   },
   headerTitle: {
+    flex: 1,
     height: 70,
     justifyContent: "center",
     alignItems: "center",
@@ -109,5 +126,9 @@ const styles = StyleSheet.create({
   listItemMarginTop: {
     flexBasis: "48%",
     marginTop: 15,
+  },
+  headerCont: {
+    width: 50,
+    padding: 10,
   },
 });
